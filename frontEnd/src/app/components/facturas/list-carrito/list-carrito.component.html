@@ -1,0 +1,37 @@
+<!---PRODUCTS LIST-->
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <h5 class="text-darken-4 center-align">Carrito de Productos</h5>
+      <table class="striped centered">
+        <thead>
+          <th>Nombre</th>
+          <th>Marca</th>
+          <th>Stock</th>
+          <th>Total</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let carrito of carritoFactura">
+            <td>{{ carrito.Nombre }}</td>
+            <td>{{ carrito.Marca }}</td>
+            <td>{{ carrito.Stock }}</td>
+            <td>{{ carrito.Precio | number: "1.2-2" }}</td>
+            <td>
+              <a
+                title="Quitar Producto"
+                (click)="quitarProducto(carrito.Id_Product)"
+              >
+                <i class="material-icons"> delete </i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+<ng-container *ngIf="generarFactura;">
+    <button class="waves-effect waves-light btn light-blue lighten-2 offset-s9 right" (click)="agregarFactura(facturaForm)">FACTURAR</button>
+</ng-container>
+</div>

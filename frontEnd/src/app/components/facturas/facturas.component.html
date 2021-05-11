@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <div class="col s5">
+      <h5 class="text-darken-4 center-align">Agregar al carrito</h5>
+      <div class="card">
+        <div class="card-content">
+          <form
+            #facturaForm="ngForm"
+            (ngSubmit)="addCarritoProducts(facturaForm)"
+          >
+            <div class="row">
+              <input
+                type="hidden"
+                name="id_Producto"
+                #id_Producto="ngModel"
+                [(ngModel)]="facturaService.seleccionFactura.id_Producto"
+              />
+              <div class="input-field col s12">
+                <input
+                  type="text"
+                  name="Cliente"
+                  #Cliente="ngModel"
+                  placeholder="Escribe el nombre del cliente"
+                  [(ngModel)]="facturaService.seleccionFactura.Cliente"
+                />
+              </div>
+              <div class="input-field col s12">
+                <input
+                  type="text"
+                  name="Stock"
+                  #Stock="ngModel"
+                  placeholder="Stock"
+                  [(ngModel)]="facturaService.seleccionFactura.Stock"
+                />
+              </div>
+              <div class="card-action">
+                <div class="input-field col s12">
+                  <button
+                    class="btn left green darken-1"
+                    title="Agregar a la lista"
+                  >
+                    <i class="material-icons"> add_shopping_cart </i>
+                  </button>
+                  <button
+                    class="btn right"
+                    type="button"
+                    (click)="limpiarForm(facturaForm)"
+                  >
+                    Limpiar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col s7">
+      <h5 class="text-darken-4 center-align">Lista de Productos</h5>
+      <table>
+        <thead>
+          <th>Nombre</th>
+          <th>Marca</th>
+          <th>Stock</th>
+          <th>Precio</th>
+          <th>Operaciones</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let productos of productoService.producto">
+            <td>{{ productos.Nombre }}</td>
+            <td>{{ productos.Marca }}</td>
+            <td>{{ productos.Stock }}</td>
+            <td>{{ productos.Precio }}</td>
+            <td>
+              <a (click)="addCarrito(productos)" title="Editar">
+                <i class="material-icons" title="Seleccionar">
+                  shopping_cart
+                </i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<app-list-carrito [facturaForm]="facturaForm"></app-list-carrito>

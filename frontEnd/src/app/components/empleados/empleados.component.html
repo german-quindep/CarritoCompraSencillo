@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col s5">
+        <div class="card">
+            <div class="card-content">
+                <form #empleadoForm="ngForm" (ngSubmit)="agregarEmpleado(empleadoForm)">
+                    <div class="row">
+                      <input type="hidden" name="_id"#_id="ngModel" [(ngModel)]="serviceEmpleado.seleccionEmpleado._id">
+                      <div class="input-field col s12">
+                        <input type="text" name="nombre" #nombre="ngModel" placeholder="Escribe el nombre"[(ngModel)]="serviceEmpleado.seleccionEmpleado.nombre">                      
+                      </div>
+                      <div class="input-field col s12">
+                        <input type="text" name="posicion" #posicion="ngModel" placeholder="Escribe su posicion"[(ngModel)]="serviceEmpleado.seleccionEmpleado.posicion">
+                      </div>
+                      <div class="input-field col s12">
+                        <input type="text" name="oficina" #oficina="ngModel" placeholder="Escribe tu oficina"[(ngModel)]="serviceEmpleado.seleccionEmpleado.oficina">
+                      </div>
+                      <div class="input-field col s12">
+                        <input type="text" name="salario" #salario="ngModel" placeholder="Escribe el salaio"[(ngModel)]="serviceEmpleado.seleccionEmpleado.salario">
+                      </div>
+                      <div class="card-action">
+                        <div class="input-field col s12">
+                          <button class="btn left">Guardar</button>
+                          <button class="btn right" (click)="limpiarForm(empleadoForm);">Limpiar</button>
+                        </div>
+                      </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col s7">
+      <table>
+        <thead>
+          <th>Nombre</th>
+          <th>Posicion</th>
+          <th>Oficina</th>
+          <th>Salario</th>
+          <th>Operaciones</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empleados of serviceEmpleado.empleado">
+            <td>{{empleados.nombre}}</td>
+            <td>{{empleados.posicion}}</td>
+            <td>{{empleados.oficina}}</td>
+            <td>{{empleados.salario}}</td>
+            <td>
+              <a (click)="editarEmpleado(empleados)" title="Editar">
+                <i class="material-icons">edit</i>
+              </a>
+              <a (click)="eliminarEmpleado(empleados._id)" title="Eliminar">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="vacio">
+          <tr>
+            <td><b>No hay datos registrados aun</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row">
+    <div class="col s5">
+      <div class="card">
+        <div class="card-content">
+          <form
+            #productoForm="ngForm"
+            (ngSubmit)="agregarProducto(productoForm)"
+          >
+            <div class="row">
+              <input
+                type="hidden"
+                name="_id"
+                #_id="ngModel"
+                [(ngModel)]="serviceProducto.seleccionProducto._id"
+              />
+              <div class="input-field col s12">
+                <input
+                  type="text"
+                  name="Nombre"
+                  #Nombre="ngModel"
+                  placeholder="Nombre del producto"
+                  [(ngModel)]="serviceProducto.seleccionProducto.Nombre"
+                />
+              </div>
+              <div class="input-field col s12">
+                <input
+                  type="text"
+                  name="Marca"
+                  #Marca="ngModel"
+                  placeholder="Nombre de la marca"
+                  [(ngModel)]="serviceProducto.seleccionProducto.Marca"
+                />
+              </div>
+              <div class="input-field col s12">
+                <input
+                  type="text"
+                  name="Stock"
+                  #Stock="ngModel"
+                  placeholder="Stock"
+                  [(ngModel)]="serviceProducto.seleccionProducto.Stock"
+                />
+              </div>
+              <div class="input-field col s12">
+                <input
+                  type="text"
+                  name="Precio"
+                  #Precio="ngModel"
+                  placeholder="Precio"
+                  [(ngModel)]="serviceProducto.seleccionProducto.Precio"
+                />
+              </div>
+              <div class="card-action">
+                <div class="input-field col s12">
+                  <button
+                    [ngClass]="
+                      edit
+                        ? 'btn left yellow darken-1'
+                        : 'btn left green darken-1'
+                    "
+                  >
+                    {{ edit ? "Editar" : "Guardar" }}
+                  </button>
+                  <button class="btn right" (click)="limpiarForm(productoForm)">
+                    Limpiar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col s7">
+      <table>
+        <thead>
+          <th>Nombre</th>
+          <th>Marca</th>
+          <th>Stock</th>
+          <th>Precio</th>
+          <th>Operaciones</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let productos of serviceProducto.producto">
+            <td>{{ productos.Nombre }}</td>
+            <td>{{ productos.Marca }}</td>
+            <td>{{ productos.Stock }}</td>
+            <td>{{ productos.Precio }}</td>
+            <td>
+              <a (click)="editProduct(productos)" title="Editar">
+                <i class="material-icons">edit</i>
+              </a>
+              <a (click)="elimiProducto(productos._id)" title="Eliminar">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="vacio">
+          <tr>
+            <td><b>No hay datos registrados aun</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

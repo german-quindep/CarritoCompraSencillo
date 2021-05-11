@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col s5 center-align offset-s4">
+      <h4>Iniciar Sesion</h4>
+      <form #formLogin="ngForm" class="center-align" (submit)="loginUsuario(formLogin)">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input type="email" name="email" ngModel class="email" />
+          <label for="email-input">Email</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock</i>
+          <input
+            type="password"
+            name="password"
+            ngModel
+            class="contrasena"
+          />
+          <label for="contrasena-input">Contraseña</label>
+        </div>
+        <div class="input-field col s12 offset-s4">
+          <button class="btn left">Inciar Sesion</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
